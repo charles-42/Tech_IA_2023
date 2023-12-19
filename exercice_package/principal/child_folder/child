@@ -1,0 +1,10 @@
+def divide_(a,b):
+    result = a/b
+    return result
+
+
+
+
+
+
+    
