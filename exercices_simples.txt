@@ -1,0 +1,23 @@
+Conversion Température:
+Créez une fonction qui permet de convertir des degrés Celsius en Fahrenheit et vice versa
+
+convert(18, C) -> Converti 18°C en Fahrenheit 
+convert(72, F) -> Converti 72°F en Celcius
+
+Calcul moyenne
+A partir des éléments suivants :
+| Prénom   | Mathématiques (Note 1) | Mathématiques (Note 2) | Français (Note 1) | Français (Note 2) | Français (Note 3) | Histoire |
+|----------|------------------------|------------------------|-------------------|-------------------|-------------------|----------|
+| Lucas    | 17                     | 18                     | 15                | 16                | 19                | 17       |
+| Emma     | 18                     | 17                     | 19                | 18                | 18                | 16       |
+| Gabriel  | 16                     | 17                     | 16                | 15                | 17                | 18       |
+| Mia      | 18                     | 17                     | 16                | 18                | 18                | 15       |
+| Noah     | 17                     | 18                     | 18                | 18                | 16                | 17       |
+| Charlotte| 18                     | 18                     | 19                | 17                | 19                | 17       |
+| Ethan    | 16                     | 17                     | 15                | 16                | 15                | 19       |
+| Sophia   | 19                     | 18                     | 17                | 19                | 18                | 15       |
+| Liam     | 18                     | 17                     | 18                | 19                | 17                | 18       |
+| Olivia   | 16                     | 18                     | 17                | 16                | 18                | 16       |
+
+Calculer la moyenne en francais, en maths, en histoire et la moyenne générale
+Ordonner la liste d'élèves en fonctions des moyennes en francais, en maths, en histoire et générale
