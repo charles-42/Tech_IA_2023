@@ -1,6 +1,3 @@
-
-
-
 class Voiture:
     def __init__(self,marque,prix):
         """Construction de l'instance de voiture
@@ -85,118 +82,78 @@ class Magasin:
         else:
             print("On ne peut ajouter à l'inventaire que des voitures")
 
+    def retirer_voiture_inventaire(self,voiture):
 
-    def retirer_une_voiture(self,voiture):
-        if isinstance(voiture, Voiture):
-            if voiture in self.inventraire:
-                
-                self.inventaire.remove(voiture)
-                return
+        # On vérifie que l'objet voiture est bien une instance de la classe voiture
+        if isinstance(voiture,Voiture):
+            if voiture in self.inventaire:
+                self.inventaire.remove(voiture) 
             else:
-                print("Cette voiture ne se trouve pas dans l'inventaire")
-                
+                 print("Cette voiture ne se trouve pas dans l'inventaire")
         else:
-            print("On ne peut ajouter à l'inventaire que des voitures")
-            
-            
-            
+            print("On ne peut retirer que des voitures de l'inventaire")
+
     def ajouter_vendeur(self,vendeur):
 
         # On vérifie que l'objet voiture est bien une instance de la classe voiture
         if isinstance(vendeur,Vendeur):
             self.liste_de_vendeurs.append(vendeur)
         else:
-            print("On ne peut ajouter à l'inventaire que des voitures")
+            print("On ne peut ajouter que des vendeurs à la liste de vendeur")
 
+    def retirer_vendeur(self,vendeur):
 
-    def retirer_un_vendeur(self,vendeur):
-        if isinstance(vendeur, Vendeur):
-            if voiture in self.liste_de_vendeurs:
-                
-                self.liste_de_vendeurs.remove(vendeur)
-                return
+        if isinstance(vendeur,Vendeur):
+            if vendeur in self.inventaire:
+                self.liste_de_vendeurs.remove(vendeur) 
             else:
-                print("Cette voiture ne se trouve pas dans l'inventaire")
-                
+                 print("Ce vendeur n'est pas salarié")
         else:
-            print("On ne peut ajouter à l'inventaire que des voitures")
-
+            print("On ne peut retirer que des vendeurs de la liste de vendeur")
+      
 class Client:
-    
+
     def __init__(self,nom, email):
         self.nom = nom
         self.email = email
-        
+
+
 class Vente:
+
     def __init__(self,magasin,voiture,client,vendeur):
         
-        if isinstance (magasin,Magasin):
+        if isinstance(magasin,Magasin):
             self.magasin = magasin
         else:
-            print("Le magasin doit appartenir à la class Magasin")
+            print("Le magasin doit appartenir à la classe magasin")
             return "error"
         
-        
         if isinstance(voiture,Voiture) and voiture in magasin.inventaire:
-            self.voiture = voiture 
-        else:
+            self.voiture = voiture
+        else:  
             print("La voiture n'est pas une voiture ou elle n'est pas en stock")
             return "error"
         
-        if isinstance(client,Client):
+        if isinstance(client,Client) :
             self.client = client
-        else:
+        else:  
             print("La client doit être de type client")
             return "error"
         
         if isinstance(vendeur,Vendeur) and vendeur in magasin.liste_de_vendeurs:
             self.vendeur = vendeur
-        else:
-            print("Le vendeur n'est pas un vendeur ou il ne travaille pas dans ce magasin,")
+        else:  
+            print("Le vendeur n'est pas un vendeur ou il ne travaille pas dans ce magasin")
             return "error"
         
-        magasin.retirer_une_voiture(voiture)    
-        
-            
+        # retirer la voiture de l'inventaire
+        magasin.retirer_voiture_inventaire(voiture)
+
+        # ajoute une vente au compteur du vendeur
         vendeur.vente()
-        
-    def imprimer_pdf(self):
-        print(
-            f"{self.magasin.nom}, Vendeur : {self.vendeur.nom} Client: {self.client.nom}, Voiture vendu : {self.voiture.marque}, reduction = {reduction}, prix = {self.voitutre.calcule_prix} "          
-        )
 
-
-
-
-toyota = Voiture("toyota",20000.0)
-
-print(toyota.marque)
-
-print(toyota.vitesse_kilometre_heure)
-
-
-toyota.accelerer(50)
-
-print(toyota.vitesse_kilometre_heure)
-
-toyota.accelerer(50)
-
-print(toyota.vitesse_kilometre_heure)
-
-toyota.freiner(10)
-toyota.freiner(200)
-
-print(toyota.vitesse_kilometre_heure)
-
-
-
-ford = Voiture("ford",15000.0)
-
-
-print(ford.marque)
-print(ford.vitesse_kilometre_heure)
-taux_de_reduction = 0.2
-nouveau_prix_reduction_20_pourcent = ford.calcule_prix(taux_de_reduction)        
+    def imprimer_pdf(self,reduction):
+        print(f"{self.magasin.nom} \n vendeur : {self.vendeur.nom} \n Client : {self.client.nom} \n Voiture vendu : {self.voiture.marque} ,\n reduction = {reduction} \n prix = {self.voiture.calcule_prix(reduction)}")
 
 toyota_1 = Voiture("toyota",20000.0)
 toyota_2 = Voiture("toyota",15000.0)
@@ -212,17 +169,15 @@ jimmy_concessionnaire = Magasin("Jimmy Concessionnaire")
 for voit in [toyota_1,toyota_2,toyota_3,toyota_4,toyota_5,ford_1,ford_2,ford_3,ford_4]:
     jimmy_concessionnaire.ajouter_voiture_inventaire(voit)
 
-Henri = Vendeur("Henri")
-Paul = Vendeur("Paul")
+toyota_6 = Voiture("toyota",50.0)
 
-jimmy_concessionnaire.ajouter_vendeur(Henri)
-jimmy_concessionnaire.ajouter_vendeur(Paul)
+henri = Vendeur("henri")
+paul = Vendeur("paul")
 
-Denis = Client("denis", "denis@gmail.com")
+jimmy_concessionnaire.ajouter_vendeur(paul)
 
-ma_vente = Vente(jimmy_concessionnaire, toyota_3, Denis, Paul)
+denis = Client("denis","denis@gmail.com")
 
-print(Paul.compteur_vente)
-print(ma_vente.vendeur.compteur_vente)
+ma_vente = Vente(jimmy_concessionnaire,toyota_5,denis,paul)
 
-print(ma_vente.magasin)
+ma_vente.imprimer_pdf(0.2)
